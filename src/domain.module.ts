@@ -1,14 +1,8 @@
 import { Global, Module } from '@nestjs/common';
 import { ConfigApiModule } from '@/datasources/config-api/config-api.module';
 import { TransactionApiModule } from '@/datasources/transaction-api/transaction-api.module';
-import { IBalancesRepository } from '@/domain/balances/balances.repository.interface';
-import { BalancesRepository } from '@/domain/balances/balances.repository';
 import { IChainsRepository } from '@/domain/chains/chains.repository.interface';
 import { ChainsRepository } from '@/domain/chains/chains.repository';
-import { IBackboneRepository } from '@/domain/backbone/backbone.repository.interface';
-import { BackboneRepository } from '@/domain/backbone/backbone.repository';
-import { ICollectiblesRepository } from '@/domain/collectibles/collectibles.repository.interface';
-import { CollectiblesRepository } from '@/domain/collectibles/collectibles.repository';
 import { ISafeRepository } from '@/domain/safe/safe.repository.interface';
 import { SafeRepository } from '@/domain/safe/safe.repository';
 import { IContractsRepository } from '@/domain/contracts/contracts.repository.interface';
@@ -36,21 +30,12 @@ import { HealthRepository } from '@/domain/health/health.repository';
 import { HumanDescriptionApiModule } from '@/datasources/human-description-api/human-description-api.module';
 import { IHumanDescriptionRepository } from '@/domain/human-description/human-description.repository.interface';
 import { HumanDescriptionRepository } from '@/domain/human-description/human-description.repository';
-import { BalancesApiModule } from '@/datasources/balances-api/balances-api.module';
 
 @Global()
 @Module({
-  imports: [
-    BalancesApiModule,
-    ConfigApiModule,
-    HumanDescriptionApiModule,
-    TransactionApiModule,
-  ],
+  imports: [ConfigApiModule, HumanDescriptionApiModule, TransactionApiModule],
   providers: [
-    { provide: IBackboneRepository, useClass: BackboneRepository },
-    { provide: IBalancesRepository, useClass: BalancesRepository },
     { provide: IChainsRepository, useClass: ChainsRepository },
-    { provide: ICollectiblesRepository, useClass: CollectiblesRepository },
     { provide: IContractsRepository, useClass: ContractsRepository },
     { provide: IDataDecodedRepository, useClass: DataDecodedRepository },
     { provide: IDelegateRepository, useClass: DelegateRepository },
@@ -71,10 +56,7 @@ import { BalancesApiModule } from '@/datasources/balances-api/balances-api.modul
     TransferValidator,
   ],
   exports: [
-    IBackboneRepository,
-    IBalancesRepository,
     IChainsRepository,
-    ICollectiblesRepository,
     IContractsRepository,
     IDataDecodedRepository,
     IDelegateRepository,

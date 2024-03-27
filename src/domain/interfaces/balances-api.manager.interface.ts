@@ -1,4 +1,14 @@
 import { IBalancesApi } from '@/domain/interfaces/balances-api.interface';
+import { Module } from '@nestjs/common';
+import { CacheFirstDataSourceModule } from '@/datasources/cache/cache.first.data.source.module';
+import { HttpErrorFactory } from '@/datasources/errors/http-error-factory';
+import { BalancesApiManager } from '@/datasources/balances-api/balances-api.manager';
+import {
+  IZerionBalancesApi,
+  ZerionBalancesApi,
+} from '@/datasources/balances-api/zerion-balances-api.service';
+import { IPricesApi } from '@/datasources/balances-api/prices-api.interface';
+import { CoingeckoApi } from '@/datasources/balances-api/coingecko-api.service';
 
 export const IBalancesApiManager = Symbol('IBalancesApiManager');
 
@@ -19,3 +29,15 @@ export interface IBalancesApiManager {
    */
   getFiatCodes(): Promise<string[]>;
 }
+
+@Module({
+  imports: [CacheFirstDataSourceModule],
+  providers: [
+    HttpErrorFactory,
+    { provide: IBalancesApiManager, useClass: BalancesApiManager },
+    { provide: IZerionBalancesApi, useClass: ZerionBalancesApi },
+    { provide: IPricesApi, useClass: CoingeckoApi },
+  ],
+  exports: [IBalancesApiManager],
+})
+export class BalancesApiModule {}
