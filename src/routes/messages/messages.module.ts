@@ -3,10 +3,11 @@ import { AddressInfoModule } from '@/routes/common/address-info/address-info.mod
 import { MessageMapper } from '@/routes/messages/mappers/message-mapper';
 import { MessagesController } from '@/routes/messages/messages.controller';
 import { MessagesService } from '@/routes/messages/messages.service';
+import { SafeRepositoryModule } from '@/domain/safe/safe.repository.interface';
 
 @Module({
+  imports: [AddressInfoModule, SafeRepositoryModule],
   controllers: [MessagesController],
-  imports: [AddressInfoModule],
   providers: [MessagesService, MessageMapper],
 })
 export class MessagesModule {}

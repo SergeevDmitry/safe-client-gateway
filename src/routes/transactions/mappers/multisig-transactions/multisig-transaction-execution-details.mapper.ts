@@ -1,8 +1,11 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { Inject, Injectable, Module } from '@nestjs/common';
 import { MultisigTransaction } from '@/domain/safe/entities/multisig-transaction.entity';
 import { Safe } from '@/domain/safe/entities/safe.entity';
 import { SafeRepository } from '@/domain/safe/safe.repository';
-import { ISafeRepository } from '@/domain/safe/safe.repository.interface';
+import {
+  ISafeRepository,
+  SafeRepositoryModule,
+} from '@/domain/safe/safe.repository.interface';
 import { TokenRepository } from '@/domain/tokens/token.repository';
 import { ITokenRepository } from '@/domain/tokens/token.repository.interface';
 import { ILoggingService, LoggingService } from '@/logging/logging.interface';
@@ -125,3 +128,9 @@ export class MultisigTransactionExecutionDetailsMapper {
     );
   }
 }
+
+@Module({
+  imports: [SafeRepositoryModule],
+  providers: [MultisigTransactionExecutionDetailsMapper],
+})
+export class MultisigTransactionExecutionDetailsMapperModule {}

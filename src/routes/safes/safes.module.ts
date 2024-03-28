@@ -3,10 +3,17 @@ import { AddressInfoModule } from '@/routes/common/address-info/address-info.mod
 import { SafesController } from '@/routes/safes/safes.controller';
 import { SafesService } from '@/routes/safes/safes.service';
 import { BalancesRepositoryModule } from '@/domain/balances/balances.repository.interface';
+import { ChainsRepositoryModule } from '@/domain/chains/chains.repository.interface';
+import { SafeRepositoryModule } from '@/domain/safe/safe.repository.interface';
 
 @Module({
+  imports: [
+    AddressInfoModule,
+    BalancesRepositoryModule,
+    ChainsRepositoryModule,
+    SafeRepositoryModule,
+  ],
   controllers: [SafesController],
   providers: [SafesService],
-  imports: [AddressInfoModule, BalancesRepositoryModule],
 })
 export class SafesModule {}

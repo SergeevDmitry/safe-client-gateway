@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { Inject, Injectable, Module } from '@nestjs/common';
 import { MultisigTransaction as DomainMultisigTransaction } from '@/domain/safe/entities/multisig-transaction.entity';
 import { SafeRepository } from '@/domain/safe/safe.repository';
 import { ISafeRepository } from '@/domain/safe/safe.repository.interface';
@@ -504,3 +504,9 @@ export class TransactionsService {
     return page.results.at(-1)?.nonce ?? null;
   }
 }
+
+@Module({
+  providers: [TransactionsService],
+  exports: [TransactionsService],
+})
+export class TransactionsServiceModule {}

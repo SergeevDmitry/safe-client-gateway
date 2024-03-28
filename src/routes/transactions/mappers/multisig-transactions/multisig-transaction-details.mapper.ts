@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Module } from '@nestjs/common';
 import { isEmpty } from 'lodash';
 import { MultisigTransaction } from '@/domain/safe/entities/multisig-transaction.entity';
 import { Safe } from '@/domain/safe/entities/safe.entity';
@@ -13,7 +13,10 @@ import { AddressInfo } from '@/routes/common/entities/address-info.entity';
 import { SafeAppInfoMapper } from '@/routes/transactions/mappers/common/safe-app-info.mapper';
 import { TransactionDataMapper } from '@/routes/transactions/mappers/common/transaction-data.mapper';
 import { MultisigTransactionInfoMapper } from '@/routes/transactions/mappers/common/transaction-info.mapper';
-import { MultisigTransactionExecutionDetailsMapper } from '@/routes/transactions/mappers/multisig-transactions/multisig-transaction-execution-details.mapper';
+import {
+  MultisigTransactionExecutionDetailsMapper,
+  MultisigTransactionExecutionDetailsMapperModule,
+} from '@/routes/transactions/mappers/multisig-transactions/multisig-transaction-execution-details.mapper';
 import { MultisigTransactionStatusMapper } from '@/routes/transactions/mappers/multisig-transactions/multisig-transaction-status.mapper';
 
 @Injectable()
@@ -101,3 +104,10 @@ export class MultisigTransactionDetailsMapper {
     ]);
   }
 }
+
+@Module({
+  imports: [MultisigTransactionExecutionDetailsMapperModule],
+  providers: [MultisigTransactionDetailsMapper],
+  exports: [MultisigTransactionDetailsMapper],
+})
+export class MultisigTransactionDetailsMapperModule {}

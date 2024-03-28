@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Module } from '@nestjs/common';
 import { ValidateFunction } from 'ajv';
 import { Page } from '@/domain/entities/page.entity';
 import { IPageValidator } from '@/domain/interfaces/page-validator.interface';
@@ -16,10 +16,10 @@ import {
   nativeTokenTransferSchema,
 } from '@/domain/safe/entities/schemas/native-token-transfer.schema';
 import {
-  TRANSFER_SCHEMA_ID,
-  transferSchema,
   TRANSFER_PAGE_SCHEMA_ID,
+  TRANSFER_SCHEMA_ID,
   transferPageSchema,
+  transferSchema,
 } from '@/domain/safe/entities/schemas/transfer.schema';
 import { Transfer } from '@/domain/safe/entities/transfer.entity';
 import { GenericValidator } from '@/validation/providers/generic.validator';
@@ -70,3 +70,9 @@ export class TransferValidator
     return this.genericValidator.validate(this.isValidPage, data);
   }
 }
+
+@Module({
+  providers: [TransferValidator],
+  exports: [TransferValidator],
+})
+export class TransferValidatorModule {}

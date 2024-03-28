@@ -15,8 +15,6 @@ import { CreationTransactionMapper } from '@/routes/transactions/mappers/creatio
 import { ModuleTransactionDetailsMapper } from '@/routes/transactions/mappers/module-transactions/module-transaction-details.mapper';
 import { ModuleTransactionStatusMapper } from '@/routes/transactions/mappers/module-transactions/module-transaction-status.mapper';
 import { ModuleTransactionMapper } from '@/routes/transactions/mappers/module-transactions/module-transaction.mapper';
-import { MultisigTransactionDetailsMapper } from '@/routes/transactions/mappers/multisig-transactions/multisig-transaction-details.mapper';
-import { MultisigTransactionExecutionDetailsMapper } from '@/routes/transactions/mappers/multisig-transactions/multisig-transaction-execution-details.mapper';
 import { MultisigTransactionExecutionInfoMapper } from '@/routes/transactions/mappers/multisig-transactions/multisig-transaction-execution-info.mapper';
 import { MultisigTransactionStatusMapper } from '@/routes/transactions/mappers/multisig-transactions/multisig-transaction-status.mapper';
 import { MultisigTransactionMapper } from '@/routes/transactions/mappers/multisig-transactions/multisig-transaction.mapper';
@@ -27,7 +25,6 @@ import { TransferDetailsMapper } from '@/routes/transactions/mappers/transfers/t
 import { TransferInfoMapper } from '@/routes/transactions/mappers/transfers/transfer-info.mapper';
 import { TransferMapper } from '@/routes/transactions/mappers/transfers/transfer.mapper';
 import { TransactionsController } from '@/routes/transactions/transactions.controller';
-import { TransactionsService } from '@/routes/transactions/transactions.service';
 import { SwapOrderMapperModule } from '@/routes/transactions/mappers/common/swap-order.mapper';
 import { SetPreSignatureDecoder } from '@/domain/swaps/contracts/decoders/set-pre-signature-decoder.helper';
 
@@ -44,8 +41,6 @@ import { SetPreSignatureDecoder } from '@/domain/swaps/contracts/decoders/set-pr
     ModuleTransactionDetailsMapper,
     ModuleTransactionMapper,
     ModuleTransactionStatusMapper,
-    MultisigTransactionDetailsMapper,
-    MultisigTransactionExecutionDetailsMapper,
     MultisigTransactionExecutionInfoMapper,
     MultisigTransactionInfoMapper,
     MultisigTransactionMapper,
@@ -58,7 +53,6 @@ import { SetPreSignatureDecoder } from '@/domain/swaps/contracts/decoders/set-pr
     TransactionDataMapper,
     TransactionPreviewMapper,
     TransactionsHistoryMapper,
-    TransactionsService,
     TransferDetailsMapper,
     TransferInfoMapper,
     HumanDescriptionMapper,

@@ -4,9 +4,16 @@ import { CacheHooksController } from '@/routes/cache-hooks/cache-hooks.controlle
 import { CacheHooksService } from '@/routes/cache-hooks/cache-hooks.service';
 import { BalancesRepositoryModule } from '@/domain/balances/balances.repository.interface';
 import { CollectiblesRepositoryModule } from '@/domain/collectibles/collectibles.repository.interface';
+import { ChainsRepositoryModule } from '@/domain/chains/chains.repository.interface';
+import { SafeRepositoryModule } from '@/domain/safe/safe.repository.interface';
 
 @Module({
-  imports: [BalancesRepositoryModule, CollectiblesRepositoryModule],
+  imports: [
+    BalancesRepositoryModule,
+    ChainsRepositoryModule,
+    CollectiblesRepositoryModule,
+    SafeRepositoryModule,
+  ],
   providers: [JsonSchemaService, CacheHooksService],
   controllers: [CacheHooksController],
 })

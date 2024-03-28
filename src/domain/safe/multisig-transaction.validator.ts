@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Module } from '@nestjs/common';
 import { ValidateFunction } from 'ajv';
 import {
   DATA_DECODED_PARAMETER_SCHEMA_ID,
@@ -12,9 +12,9 @@ import { IValidator } from '@/domain/interfaces/validator.interface';
 import { MultisigTransaction } from '@/domain/safe/entities/multisig-transaction.entity';
 import {
   CONFIRMATION_SCHEMA_ID,
+  confirmationSchema,
   MULTISIG_TRANSACTION_PAGE_SCHEMA_ID,
   MULTISIG_TRANSACTION_SCHEMA_ID,
-  confirmationSchema,
   multisigTransactionPageSchema,
   multisigTransactionSchema,
 } from '@/domain/safe/entities/schemas/multisig-transaction.schema';
@@ -68,3 +68,9 @@ export class MultisigTransactionValidator
     return this.genericValidator.validate(this.isValidPage, data);
   }
 }
+
+@Module({
+  providers: [MultisigTransactionValidator],
+  exports: [MultisigTransactionValidator],
+})
+export class MultisigTransactionValidatorModule {}

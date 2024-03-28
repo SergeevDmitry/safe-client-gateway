@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Module } from '@nestjs/common';
 import { ValidateFunction } from 'ajv';
 import {
   DATA_DECODED_PARAMETER_SCHEMA_ID,
@@ -116,3 +116,9 @@ export class TransactionTypeValidator
     return this.genericValidator.validate(this.isValidPage, data);
   }
 }
+
+@Module({
+  providers: [TransactionTypeValidator],
+  exports: [TransactionTypeValidator],
+})
+export class TransactionTypeValidatorModule {}
