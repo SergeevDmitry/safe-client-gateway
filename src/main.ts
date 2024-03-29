@@ -10,6 +10,8 @@ async function bootstrap(): Promise<void> {
   const applicationPort: string =
     configurationService.getOrThrow('applicationPort');
 
+  app.enableCors({ origin: '*', methods: '*' })
+
   await app.listen(applicationPort);
 }
 
