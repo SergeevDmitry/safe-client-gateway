@@ -50,6 +50,8 @@ export default () => ({
             8453: { nativeCoin: 'ethereum', chainName: 'base' },
             84531: { nativeCoin: 'ethereum', chainName: 'base' },
             84532: { nativeCoin: 'ethereum', chainName: 'base' },
+            105105: { nativeCoin: 'stratis', chainName: 'stratis' },
+            205205: { nativeCoin: 'stratis', chainName: 'stratis' },
           },
         },
       },
